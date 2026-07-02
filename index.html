@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>QR Code Generator Free Online</title>
+<title>Tools Hub - QR Generator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -10,48 +10,55 @@
 <style>
 body{
   margin:0;
-  font-family: Arial;
+  font-family:Arial;
   background:#0b1220;
   color:white;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:#111827;
+  position:sticky;
+  top:0;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+nav a:hover{
+  opacity:1;
 }
 
 /* HERO */
 .hero{
   text-align:center;
   padding:60px 20px;
-  background: linear-gradient(135deg,#1e3a8a,#0f172a);
+  background:linear-gradient(135deg,#1e3a8a,#0f172a);
 }
 
 .hero h1{
   font-size:40px;
-  margin-bottom:10px;
 }
 
 .hero p{
   opacity:0.8;
 }
 
-/* BUTTONS */
-.btn{
-  padding:12px 18px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  margin:5px;
-}
-
-.green{background:#22c55e;color:white;}
-.blue{background:#3b82f6;color:white;}
-
-/* MAIN BOX */
+/* TOOL BOX */
 .container{
   max-width:600px;
   margin:-40px auto 40px;
   background:#111827;
   padding:25px;
   border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
   text-align:center;
 }
 
@@ -63,7 +70,18 @@ input{
   margin-top:10px;
 }
 
-/* QR BOX */
+button{
+  padding:10px 15px;
+  margin:5px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.green{background:#22c55e;color:white;}
+.blue{background:#3b82f6;color:white;}
+
+/* QR */
 #qrcode{
   margin-top:20px;
   background:white;
@@ -72,44 +90,43 @@ input{
   border-radius:10px;
 }
 
-/* CARDS */
-.cards{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px;
+/* SECTIONS */
+.section{
   padding:40px 20px;
+  text-align:center;
 }
 
 .card{
   background:#111827;
   padding:20px;
-  border-radius:12px;
+  margin:10px;
+  border-radius:10px;
+  display:inline-block;
   width:250px;
-  text-align:center;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  background:#0f172a;
-  font-size:13px;
-  opacity:0.7;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
+<nav>
+<div><b>ToolsHub</b></div>
+<div>
+<a href="#tool">QR Tool</a>
+<a href="#features">Features</a>
+<a href="#about">About</a>
+</div>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
-  <h1>QR Code Generator</h1>
-  <p>Create QR codes instantly for free — text, URL, WiFi & more coming soon</p>
+<h1>QR Code Generator</h1>
+<p>Free Online Tools Hub - More tools coming soon</p>
 </div>
 
 <!-- TOOL -->
-<div class="container">
+<div class="container" id="tool">
 
 <h2>Generate QR Code</h2>
 
@@ -117,34 +134,30 @@ footer{
 
 <br>
 
-<button class="btn green" onclick="generateQR()">Generate</button>
-<button class="btn blue" onclick="downloadQR()">Download</button>
+<button class="green" onclick="generateQR()">Generate</button>
+<button class="blue" onclick="downloadQR()">Download</button>
 
 <div id="qrcode"></div>
 
 </div>
 
 <!-- FEATURES -->
-<div class="cards">
+<div class="section" id="features">
 
-<div class="card">
-<h3>⚡ Fast</h3>
-<p>QR instantly generate hota hai</p>
-</div>
+<h2>Why Use Our Tool?</h2>
 
-<div class="card">
-<h3>📱 Mobile Friendly</h3>
-<p>Har device par perfectly kaam karta hai</p>
-</div>
-
-<div class="card">
-<h3>🔒 Free Tool</h3>
-<p>Koi signup ya payment nahi</p>
-</div>
+<div class="card">⚡ Fast QR Generation</div>
+<div class="card">📱 Mobile Friendly</div>
+<div class="card">🔒 100% Free Tool</div>
 
 </div>
 
-<!-- SCRIPT -->
+<!-- ABOUT -->
+<div class="section" id="about">
+<h2>About</h2>
+<p>This is a free online tools website. We are building multiple tools like QR Generator, Password Generator, and more.</p>
+</div>
+
 <script>
 
 function generateQR(){
@@ -153,11 +166,11 @@ function generateQR(){
   document.getElementById("qrcode").innerHTML="";
 
   if(!text){
-    alert("Enter text or URL");
+    alert("Enter text");
     return;
   }
 
-  new QRCode(document.getElementById("qrcode"), {
+  new QRCode(document.getElementById("qrcode"),{
     text:text,
     width:220,
     height:220
@@ -174,16 +187,11 @@ function downloadQR(){
 
   let a=document.createElement("a");
   a.href=img.src;
-  a.download="qr-code.png";
+  a.download="qr.png";
   a.click();
 }
 
 </script>
-
-<!-- FOOTER -->
-<footer>
-Made with ❤️ | QR Code Generator Free Tool
-</footer>
 
 </body>
 </html>
