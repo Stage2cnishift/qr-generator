@@ -1,62 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QR Code Generator</title>
+<meta charset="UTF-8">
+<title>QR Code Generator Free Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #f4f4f4;
-      padding: 40px;
-    }
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  text-align:center;
+}
 
-    input {
-      padding: 10px;
-      width: 250px;
-      margin-bottom: 10px;
-    }
+.container{
+  max-width:500px;
+  margin:80px auto;
+  background:#111827;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
 
-    button {
-      padding: 10px 20px;
-      cursor: pointer;
-      background: black;
-      color: white;
-      border: none;
-    }
+h1{
+  margin-bottom:10px;
+}
 
-    #qrcode {
-      margin-top: 20px;
-    }
-  </style>
+p{
+  font-size:14px;
+  opacity:0.8;
+}
+
+input{
+  width:90%;
+  padding:12px;
+  margin-top:15px;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+button{
+  margin-top:10px;
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.generate{
+  background:#22c55e;
+  color:white;
+}
+
+.download{
+  background:#3b82f6;
+  color:white;
+}
+
+#qrcode{
+  margin-top:20px;
+  background:white;
+  display:inline-block;
+  padding:10px;
+  border-radius:10px;
+}
+</style>
 </head>
+
 <body>
 
-  <h1>QR Code Generator</h1>
+<div class="container">
 
-  <input type="text" id="text" placeholder="Enter text or URL" />
-  <br/>
-  <button onclick="generateQR()">Generate QR</button>
+<h1>QR Code Generator</h1>
+<p>Free tool to generate QR Code instantly</p>
 
-  <div id="qrcode"></div>
+<input type="text" id="text" placeholder="Enter text or URL">
 
-  <script>
-    function generateQR() {
-      let text = document.getElementById("text").value;
+<br>
 
-      document.getElementById("qrcode").innerHTML = "";
+<button class="generate" onclick="generateQR()">Generate QR Code</button>
+<button class="download" onclick="downloadQR()">Download QR</button>
 
-      new QRCode(document.getElementById("qrcode"), {
-        text: text,
-        width: 200,
-        height: 200
-      });
-    }
-  </script>
+<div id="qrcode"></div>
+
+</div>
+
+<script>
+
+function generateQR(){
+  let text=document.getElementById("text").value;
+
+  document.getElementById("qrcode").innerHTML="";
+
+  if(!text){
+    alert("Please enter text or URL");
+    return;
+  }
+
+  new QRCode(document.getElementById("qrcode"), {
+    text:text,
+    width:220,
+    height:220
+  });
+}
+
+function downloadQR(){
+  let img=document.querySelector("#qrcode img");
+
+  if(!img){
+    alert("Pehle QR generate karo");
+    return;
+  }
+
+  let link=document.createElement("a");
+  link.href=img.src;
+  link.download="qr-code.png";
+  link.click();
+}
+
+</script>
 
 </body>
 </html>
